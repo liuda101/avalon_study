@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8"/>
+  <title>Avalon</title>
+  <script src="scripts/avalon.modern.min.js"></script>
+  <link rel="stylesheet" href="styles/style.css" type="text/css">
+</head>
+<body>
+
+
+<div class="header">
+  <h1>Avalon</h1>
+</div>
+
+<div class="blog" ms-controller="blog">
+  <h2 class="blog-title">{{blog.subject}}</h2>
+  <div class="blog-info">
+    {{blog.author}} - {{blog.publish_date | date('yyyy/MM/dd')}} - 评论({{blog.comment_count | commentCount}})
+  </div>
+  <div class="h-spliter"></div>
+  <div class="blog-content">
+    {{blog.content | html}}
+  </div>
+</div>
+
+<div class="comments" ms-controller="comments">
+  <div class="comments-title">
+    Comment({{comments.size()}}):
+  </div>
+  <div class="comment-list">
+    <div class="comment-item" ms-repeat="comments">
+      <a href="url" class="avatar"><img ms-src="el.avatar" alt=""></a>
+      <div class="comment-c">
+        <div class="comment-info">
+        <a href="url">{{el.author}}</a> - <span>{{el.date}}</span>
+        </div>
+        <div class="comment-content">
+          {{el.content | html}}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script>
+avalon.filters.commentCount = function(str){
+  var count = parseInt(str);
+  return count || '暂无';
+};
+var blogVM = avalon.define('blog', function(vm){
+  vm.blog = {};
+});
+var commentsVM = avalon.define('comments', function(vm){
+  vm.comments = [];
+});
+
+require(['./mmRequest'], function(io){
+  io.get('./data/chapter1.json', {}, function(data){
+    blogVM.blog = data;
+  });
+  io.get('./data/comments.json', {}, function(data){
+    commentsVM.comments = data;
+  });
+});
+</script>
+
+</body>
+</html>

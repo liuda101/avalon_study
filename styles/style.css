@@ -1,0 +1,20 @@
+div,h1,h2,h3,h4,h4,h6,p,body,html{padding:0; margin:0;}
+
+.header{background-color:#000;}
+.header h1{width:600px; margin:0 auto; font-size:30px; line-height:60px; color:#fff;}
+
+.blog{width:600px; padding:20px; margin:20px auto; border:1px solid #dedede; border-radius:2px;}
+.blog-title{font-size:25px; line-height:30px;}
+.blog-info{color:#999; font-size:14px; line-height:20px;}
+.h-spliter{margin:10px 0; border-top:1px solid #cdcdcd;}
+.blog-content{color:#333;}
+.blog-content h4{font-size:18px; line-height:30px;}
+.blog-content p{font-size:14px; line-height:20px;}
+
+.comments{width:600px; padding:20px; margin:20px auto; border:1px solid #dedede; border-radius:2px;}
+.comments-title{font-size:20px;}
+.comment-item{margin:20px 0;}
+.comment-item .avatar{float:left; width:50px; height:50px;}
+.comment-item .avatar img{display:block; height:100%; width:100%; border-radius:50%;}
+.comment-c{margin-left:70px;}
+.comment-info{line-height: 50px;}
